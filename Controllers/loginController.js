@@ -4,8 +4,8 @@ import { comparePassword, hashPassword } from '../helpers/authHelper.js'
 
 export const loginController = async (req, res) => {
     try {
-        const { email, password } = req.body;
-        if (!email || !password) {
+        const { phoneNumber, password } = req.body;
+        if (!phoneNumber || !password) {
             return res.status(404).send({
                 success: false,
                 message: "Invalid email or password",
@@ -14,7 +14,7 @@ export const loginController = async (req, res) => {
         }
 
         // check user
-        const user = await userModel.findOne({ email });
+        const user = await userModel.findOne({ phoneNumber });
         if (!user) {
             return res.status(404).send({
                 success: false,
@@ -36,7 +36,7 @@ export const loginController = async (req, res) => {
         }); //"10h"->10 hours, "10d"->10 days, "10s"->10 seconds, "10"->10 milliSeconds
 
         const userDetails = {
-            username: user.username,
+            phoneNumber: user.phoneNumber,
             email: user.email,
         };
 

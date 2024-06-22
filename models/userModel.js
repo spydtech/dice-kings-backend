@@ -6,8 +6,13 @@ const userSchema = new mongoose.Schema({
         requered: true,
         trim: true
     },
-    email: {
+    displayName: {
         type: String,
+        required: true,
+        unique: true
+    },
+    phoneNumber: {
+        type: Number,
         required: true,
         unique: true
     },
@@ -15,7 +20,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    
+    uniqueId: {
+        type: Number,
+        unique: true
+    }
+
 }, { timestamps: true })
 
 export default mongoose.model('users', userSchema);
