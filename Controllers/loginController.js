@@ -8,7 +8,7 @@ export const loginController = async (req, res) => {
         if (!phoneNumber || !password) {
             return res.status(404).send({
                 success: false,
-                message: "Invalid email or password",
+                message: "Invalid phoneNumber or password",
 
             });
         }
@@ -18,7 +18,7 @@ export const loginController = async (req, res) => {
         if (!user) {
             return res.status(404).send({
                 success: false,
-                message: "Email is not register"
+                message: "Phone Number is not register"
             })
         };
         // compare login passwoed and saved password
@@ -37,7 +37,9 @@ export const loginController = async (req, res) => {
 
         const userDetails = {
             phoneNumber: user.phoneNumber,
-            email: user.email,
+            _id: user._id,
+            uniqueId: user.uniqueId
+
         };
 
         const userDetailsJSON = JSON.stringify(userDetails);
